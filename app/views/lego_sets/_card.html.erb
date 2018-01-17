@@ -1,0 +1,17 @@
+<div class="print-card">
+    <h1 class="print-card-name">
+        <%=lego_set.name%>
+        <br>
+        <small>
+            <%=lego_set.set_id%>
+        </small>
+      </h1>
+      <div class="print-card-images">
+        <div class="print-card-thumbnail">
+            <img src="<%=lego_set.thumbnail_url%>">
+        </div>
+        <div class="print-card-qr">
+            <img src="//api.qrserver.com/v1/create-qr-code/?data=<%= URI.encode(lego_set.instructions_url)%>&size=300x300">
+        </div>
+      </div>
+</div>

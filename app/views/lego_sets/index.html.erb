@@ -1,0 +1,19 @@
+<div class="container">
+    <h2>Lego Catalog</h2>
+    <div class="row">
+      <% @lego_sets.each do |set| %>
+  
+        <div class="card card-album">
+          <a href="<%= url_for lego_set_path(set.id)%>">
+            <img src="<%= set.thumbnail_url%>"
+            style="width:100%; display: block;">
+          </a>
+          <p class="card-text">
+            <%= set.name %>
+          </p>
+        </div>
+  
+        <% end %>
+    </div>
+  
+  </div>

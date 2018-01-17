@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>
+      <%= @lego_set.name%>
+      <small>
+          <%= @lego_set.set_id%>
+      </small>
+  </h1>
+
+  <div class="row mb-3">
+    <div class="col">
+      <a href="<%= @lego_set.instructions_url %>" target="_blank" class="btn btn-primary">Build  Instructions</a>
+      <%= link_to 'All Sets', lego_sets_path,  class: 'btn btn-light' %>
+      <%= link_to 'Add Another', new_lego_set_path,  class: 'btn btn-light' %>
+      <%= link_to 'Delete', lego_set_path(@lego_set),  class: 'btn btn-outline-danger',
+          method: :delete,
+          data: { confirm: 'Are you sure you want to remove this set?' } %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <img src="<%= @lego_set.thumbnail_url %>">
+    </div>
+  </div>
+
+</div>

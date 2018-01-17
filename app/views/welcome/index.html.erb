@@ -1,0 +1,38 @@
+<div class="jumbotron">
+  <div class="container">
+
+
+    <%= image_tag "legoman.gif", width: 65, class: 'lego-man' %>
+      <h1 class="display-4" style="margin-left: 80px">Oh My Lego!</h1>
+      <p class="lead" style="margin-left: 80px">
+        A place to catalog lego sets in your collection, and keep track of building instructions.
+      </p>
+      <hr class="my-4">
+      <p>
+        Use the options here to add sets to your collection, or create reference cards.
+      </p>
+      <p class="lead">
+        <%= link_to  "Add Set", new_lego_set_path, { class: 'btn btn-primary btn-lg'} %>
+      </p>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Recently Updated</h2>
+  <div class="row">
+    <% @latest_sets.each do |set| %>
+
+      <div class="card card-album">
+        <a href="<%= url_for lego_set_path(set.id)%>">
+          <img src="<%= set.thumbnail_url%>"
+          style="width: 100%; display: block;">
+        </a>
+        <p class="card-text">
+          <%= set.name %>
+        </p>
+      </div>
+
+      <% end %>
+  </div>
+
+</div>

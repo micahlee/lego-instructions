@@ -1,0 +1,49 @@
+// Place all the styles related to the Sets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@page {
+  /* dimensions for the whole page */
+  size: A4;
+  
+  margin: 0;
+}
+
+
+.print-card {
+  border-top: solid #000 2px;
+  border-bottom: solid #000 2px;
+  height: 3.5in;
+  width: 100%;
+  padding: 0.25in 0.1in;
+  page-break-inside: avoid;
+
+  display:flex;
+  flex-direction: column;
+
+  .print-card-name {
+  }
+
+  .print-card-images {
+
+    flex: auto;
+    display: flex;
+
+    .print-card-thumbnail {
+        width: 50%;
+      img {
+        height: 80%;
+      }
+
+    }
+
+    .print-card-qr {
+      width: 50%;
+      text-align: center;
+
+      img {
+        height: 80%;
+      }
+    }
+  }
+}

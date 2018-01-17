@@ -1,0 +1,7 @@
+<%= form_with model: @lego_set, local: true, :class => 'form' do |form| %>
+
+  <%= react_component 'LegoSetSearch', { data: @records } %>
+
+  <%= form.submit  :class => 'btn btn-primary' %>
+
+<% end %>
