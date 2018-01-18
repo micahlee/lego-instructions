@@ -20,6 +20,13 @@
 <div class="container">
   <h2>Recently Updated</h2>
   <div class="row">
+
+    <% if @latest_sets.empty? %>
+      <div class="col alert alert-warning">
+        You haven't added any sets to your library yet!
+      </div>
+    <% end %>
+
     <% @latest_sets.each do |set| %>
 
       <div class="card card-album">

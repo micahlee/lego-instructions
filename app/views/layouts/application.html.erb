@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>LegoInstructions</title>
+  <title>LEGO</title>
   <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -10,30 +10,62 @@
 </head>
 
 <body>
+
   <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
-    <%= link_to 'Oh My Lego', { controller: 'welcome' }, { class: 'navbar-brand' } %>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <%= link_to 'Oh My Lego', root_url, { class: 'navbar-brand' } %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
             <%= link_to 'All Sets', lego_sets_path, { class: 'nav-link' } %>
-        </li>
-        <li class="nav-item">
+          </li>
+          <li class="nav-item">
             <%= link_to  "Add Set", new_lego_set_path, { class: 'nav-link'} %>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
+          </li>
+        </ul>
 
-  <%= yield %>
+
+
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <%= current_user.email %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%= link_to 'Edit profile', edit_user_registration_path, :class => 'dropdown-item' %>
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'dropdown-item'  %>
+              </div>
+            </li>
+
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign up", new_user_registration_path, :class => 'nav-link'  %>
+              </li>
+              <li class="nav-item"></li>
+              <%= link_to "Login", new_user_session_path, :class => 'nav-link'  %>
+                </li>
+                <% end %>
+        </ul>
+      </div>
+  </nav>
+  <% if notice %>
+    <div class="alert alert-banner alert-primary" role="alert">
+      <%= notice %>
+    </div>
+    <% end %>
+
+      <% if alert %>
+        <div class="alert alert-banner alert-danger" role="alert">
+          <%= alert %>
+        </div>
+        <% end %>
+
+          <%= yield %>
 </body>
 
 </html>

@@ -4,27 +4,27 @@ require 'rest-client'
 class LegoSetsController < ApplicationController
   
   def index 
-    @lego_sets = LegoSet.all
+    @lego_sets = current_user.lego_sets.all
   end
 
   def cards
-    @lego_sets = LegoSet.all
+    @lego_sets = current_user.lego_sets.all
   end
 
   def show
-    @lego_set = LegoSet.find(params[:id])
+    @lego_set = current_user.lego_sets.find(params[:id])
   end
 
   def card
-    @lego_set = LegoSet.find(params[:id])
+    @lego_set = current_user.lego_sets.find(params[:id])
   end
   
   def new
-    @lego_set = LegoSet.new
+    @lego_set = current_user.lego_sets.build
   end
 
   def create
-    @lego_set = LegoSet.new(lego_set_params)
+    @lego_set = current_user.lego_sets.build(lego_set_params)
     
     @lego_set.instructions_url = instructions_url(@lego_set.set_id)
 
@@ -33,7 +33,7 @@ class LegoSetsController < ApplicationController
   end
 
   def destroy
-    @lego_set = LegoSet.find(params[:id])
+    @lego_set = current_user.lego_sets.find(params[:id])
     @lego_set.destroy
 
     redirect_to lego_sets_path
