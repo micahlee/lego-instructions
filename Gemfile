@@ -5,20 +5,21 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'bootstrap', '~> 4.0.0.beta3'
+gem 'bootstrap',  ">= 4.3.1"
 gem 'jquery-rails'
 gem 'react-rails', '~> 1.0'
 gem 'react-autocomplete-rails'
 gem "font-awesome-rails"
-
-
 gem 'rest-client'
-
 gem 'devise'
 
+# Specified for CVE alerts, may eventually be able to remove
+gem "nokogiri", ">= 1.8.5"
+gem "rack", ">= 2.0.6"
+gem "loofah", ">= 2.2.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.4'
+gem 'rails', ">= 5.1.6.1"
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
