@@ -1,0 +1,27 @@
+FROM ubuntu:latest
+
+RUN apt-get update -y && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -yq \
+    build-essential \
+    ruby2.5 ruby2.5-dev \
+    zlib1g-dev \
+    libsqlite3-dev
+
+RUN gem install bundler
+
+RUN mkdir -p /src
+
+WORKDIR /src
+
+ADD Gemfile      .
+ADD Gemfile.lock .
+
+ADD . .
+
+RUN bundle
+
+ENV PORT 80
+EXPOSE 80
+
+ENTRYPOINT ["./docker/entrypoint.sh"]
+CMD ["start"]
